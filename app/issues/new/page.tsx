@@ -1,5 +1,6 @@
 "use client";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 import { issueSchema } from "@/app/validationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, TextField } from "@radix-ui/themes";
@@ -18,7 +19,7 @@ const NewIssuePage = () => {
     register,
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<IssueForm>({
     resolver: zodResolver(issueSchema)
   });
@@ -60,7 +61,15 @@ const NewIssuePage = () => {
             <SimpleMde placeholder="Description" {...field} />
           )}
         />
-        <Button>Submit New Issue</Button>
+        <Button disabled={isSubmitting}>
+          {isSubmitting ? (
+            <>
+              Submitting... <Spinner />
+            </>
+          ) : (
+            "Submit new issue"
+          )}
+        </Button>
       </form>
     </div>
   );
