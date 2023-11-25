@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Issue Tracker built with NextJS
 
-## Getting Started
+This is an issue tracker app I made with NextJS. It has featuers like authentication,
+assigning issues to other users and all the basic CRUD operations.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Frontend
+
+- [React](https://react.dev/) - Front-end library
+- [Radix UI](https://www.radix-ui.com/) - Comoponet Library
+- [Tailwindcss](https://tailwindcss.com/) - Makes me not hate my life writing CSS
+
+### Backend
+
+- [NextJS](https://nextjs.org/)
+- [MySql](https://www.mysql.com/) - Database
+- [Prisma]("https://www.prisma.io/") - ORM
+- [NextAuth]("https://next-auth.js.org/") - Authentication
+- [Zod](https://zod.dev/) - Data validation
+
+## How to Run
+
+Firstly, clone the repo:
+
+```sh
+git clone https://github.com/turtledev65/issue-tracker.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go into the newly created directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+cd issue-tracker
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies using npm:
 
-## Learn More
+```sh
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Provide the required enviroment variables in a `.env` file, use `.env.example` for refernce:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+DATABASE_URL=""
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET=""
 
-## Deploy on Vercel
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+And now you can run it on `localhost:300` using:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+npm run dev
+```
+
+## Credits
+
+- [react-icons](https://react-icons.github.io/react-icons/) - used for the icons
