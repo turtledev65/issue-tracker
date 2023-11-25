@@ -15,8 +15,8 @@ assigning issues to other users and all the basic CRUD operations.
 
 - [NextJS](https://nextjs.org/)
 - [MySql](https://www.mysql.com/) - Database
-- [Prisma]("https://www.prisma.io/") - ORM
-- [NextAuth]("https://next-auth.js.org/") - Authentication
+- [Prisma](https://www.prisma.io/) - ORM
+- [NextAuth](https://next-auth.js.org/) - Authentication
 - [Zod](https://zod.dev/) - Data validation
 
 ## How to Run
