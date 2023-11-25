@@ -99,7 +99,11 @@ const IssueForm = ({ issue }: Props) => {
               control={control}
               defaultValue={issue?.description}
               render={({ field }) => (
-                <SimpleMDE placeholder="Description" {...field} />
+                <SimpleMDE
+                  placeholder="Description"
+                  className="mt-3"
+                  {...field}
+                />
               )}
             />
           </Box>
@@ -109,19 +113,26 @@ const IssueForm = ({ issue }: Props) => {
               {isSubmitting && <Spinner />}
             </Button>
             {issue && (
-              <Select.Root defaultValue={issue.status}>
-                <Select.Trigger />
-                <Select.Content>
-                  <Select.Group>
-                    <Select.Label>Status</Select.Label>
-                    {Object.entries(statusMap).map(([key, value]) => (
-                      <Select.Item value={key} key={key}>
-                        {value.label}
-                      </Select.Item>
-                    ))}
-                  </Select.Group>
-                </Select.Content>
-              </Select.Root>
+              <Controller
+                name="status"
+                control={control}
+                defaultValue={issue.status}
+                render={({ field }) => (
+                  <Select.Root onValueChange={field.onChange} {...field}>
+                    <Select.Trigger />
+                    <Select.Content>
+                      <Select.Group>
+                        <Select.Label>Status</Select.Label>
+                        {Object.entries(statusMap).map(([key, value]) => (
+                          <Select.Item value={key} key={key}>
+                            {value.label}
+                          </Select.Item>
+                        ))}
+                      </Select.Group>
+                    </Select.Content>
+                  </Select.Root>
+                )}
+              />
             )}
           </Flex>
         </Grid>
