@@ -14,6 +14,7 @@ import {
   Select,
   TextField
 } from "@radix-ui/themes";
+import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -50,25 +51,13 @@ const IssueForm = ({ issue }: Props) => {
 
   const handleSubmitIssue = handleSubmit(async data => {
     try {
-      let response = null;
-
-      if (issue)
-        response = await fetch(`/api/issues/${issue.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-      else
-        response = await fetch("/api/issues", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-
-      if (!response.ok) throw response;
-
-      if (issue) router.push(`/issues/${issue.id}`);
-      else router.push(`/issues`);
+      if (issue) {
+        await axios.patch(`/api/issues/${issue.id}`, data);
+        router.push(`/issues/${issue.id}`);
+      } else {
+        await axios.post("/api/issues", data);
+        router.push(`/issues`);
+      }
       router.refresh();
     } catch (err) {
       setError("An unexpected error occured.");

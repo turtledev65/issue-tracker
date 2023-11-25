@@ -2,6 +2,7 @@
 
 import Spinner from "@/app/components/Spinner";
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -13,13 +14,8 @@ const DeleteIssueButton = ({ issueId }: { issueId: string }) => {
 
   const handleDeleteIssue = async () => {
     try {
-      const res = await fetch(`/api/issues/${issueId}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" }
-      });
+      await axios.delete(`/api/issues/${issueId}`);
       setDeleting(true);
-      if (!res.ok) throw res;
-
       router.push("/issues");
       router.refresh();
     } catch (error) {
