@@ -1,10 +1,18 @@
+import authOptions from "@/app/auth/authOptions";
 import { issueSchema } from "@/app/validationSchemas";
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  const session = await getServerSession(authOptions);
+  if (!session)
+    return NextResponse.json(
+      { error: "You must be logged in" },
+      { status: 401 }
+    );
 
+  const body = await request.json();
   const validation = issueSchema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
